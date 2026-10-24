@@ -1,0 +1,139 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.01kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.14-slim
+#2 DONE 0.3s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 129B 0.0s done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [1/6] FROM docker.io/library/python:3.14-slim@sha256:0514bc76712d64f8bb48adcb95b1ab0d88c69fee95d62fe4c18ee948bee9b1e1
+#5 resolve docker.io/library/python:3.14-slim@sha256:0514bc76712d64f8bb48adcb95b1ab0d88c69fee95d62fe4c18ee948bee9b1e1 0.0s done
+#5 ...
+
+#4 [internal] load build context
+#4 transferring context: 1.11kB 0.0s done
+#4 DONE 0.1s
+
+#5 [1/6] FROM docker.io/library/python:3.14-slim@sha256:0514bc76712d64f8bb48adcb95b1ab0d88c69fee95d62fe4c18ee948bee9b1e1
+#5 sha256:1484fb1dde9f1e72e81c3217b4081dbca2ff3cd75d9f7a4dbdd5ed9a9ab609d4 0B / 250B 0.2s
+#5 sha256:1484fb1dde9f1e72e81c3217b4081dbca2ff3cd75d9f7a4dbdd5ed9a9ab609d4 250B / 250B 0.2s done
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 0B / 12.39MB 0.3s
+#5 sha256:c8c008b474ac76c5b59e7ad8bf45f234e69d9d618d800de57ec7b157be08381d 0B / 1.29MB 0.2s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 0B / 29.84MB 0.2s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 1.05MB / 12.39MB 2.0s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 2.10MB / 12.39MB 2.9s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 3.15MB / 12.39MB 3.9s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 4.19MB / 12.39MB 5.3s
+#5 sha256:c8c008b474ac76c5b59e7ad8bf45f234e69d9d618d800de57ec7b157be08381d 0B / 1.29MB 5.3s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 0B / 29.84MB 5.3s
+#5 sha256:c8c008b474ac76c5b59e7ad8bf45f234e69d9d618d800de57ec7b157be08381d 1.05MB / 1.29MB 5.9s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 5.24MB / 12.39MB 6.2s
+#5 sha256:c8c008b474ac76c5b59e7ad8bf45f234e69d9d618d800de57ec7b157be08381d 1.29MB / 1.29MB 7.1s done
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 6.29MB / 12.39MB 7.5s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 7.34MB / 12.39MB 8.4s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 8.39MB / 12.39MB 9.3s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 1.05MB / 29.84MB 10.4s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 9.44MB / 12.39MB 11.4s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 10.49MB / 12.39MB 12.3s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 11.53MB / 12.39MB 13.4s
+#5 sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 12.39MB / 12.39MB 14.1s done
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 2.10MB / 29.84MB 15.5s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 4.19MB / 29.84MB 17.4s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 6.29MB / 29.84MB 20.4s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 8.39MB / 29.84MB 22.5s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 10.49MB / 29.84MB 25.8s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 12.58MB / 29.84MB 28.5s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 14.68MB / 29.84MB 30.6s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 16.78MB / 29.84MB 32.8s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 18.87MB / 29.84MB 34.5s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 20.97MB / 29.84MB 36.3s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 23.07MB / 29.84MB 38.5s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 25.17MB / 29.84MB 40.5s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 27.26MB / 29.84MB 42.3s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 29.36MB / 29.84MB 44.1s
+#5 sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 29.84MB / 29.84MB 44.3s done
+#5 extracting sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034
+#5 extracting sha256:f2be67225471500c788ce88c597eb5ea8336e912ad1ca4815650e0281afe2034 1.4s done
+#5 DONE 46.0s
+
+#5 [1/6] FROM docker.io/library/python:3.14-slim@sha256:0514bc76712d64f8bb48adcb95b1ab0d88c69fee95d62fe4c18ee948bee9b1e1
+#5 extracting sha256:c8c008b474ac76c5b59e7ad8bf45f234e69d9d618d800de57ec7b157be08381d
+#5 extracting sha256:c8c008b474ac76c5b59e7ad8bf45f234e69d9d618d800de57ec7b157be08381d 0.2s done
+#5 DONE 46.2s
+
+#5 [1/6] FROM docker.io/library/python:3.14-slim@sha256:0514bc76712d64f8bb48adcb95b1ab0d88c69fee95d62fe4c18ee948bee9b1e1
+#5 extracting sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8
+#5 extracting sha256:2cb672340c81d54eae68bd73635134ad5ede9da3664d3d638e94bae1666adae8 0.9s done
+#5 DONE 47.1s
+
+#5 [1/6] FROM docker.io/library/python:3.14-slim@sha256:0514bc76712d64f8bb48adcb95b1ab0d88c69fee95d62fe4c18ee948bee9b1e1
+#5 extracting sha256:1484fb1dde9f1e72e81c3217b4081dbca2ff3cd75d9f7a4dbdd5ed9a9ab609d4 0.0s done
+#5 DONE 47.1s
+
+#6 [2/6] WORKDIR /app
+#6 DONE 0.3s
+
+#7 [3/6] COPY requirements.txt .
+#7 DONE 0.0s
+
+#8 [4/6] RUN pip install --no-cache-dir -r requirements.txt
+#8 8.693 Collecting Flask==3.1.3 (from -r requirements.txt (line 1))
+#8 9.381   Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+#8 9.723 Collecting redis==8.1.0 (from -r requirements.txt (line 2))
+#8 9.825   Downloading redis-8.1.0-py3-none-any.whl.metadata (16 kB)
+#8 10.01 Collecting gunicorn==26.2.0 (from -r requirements.txt (line 3))
+#8 10.11   Downloading gunicorn-26.2.0-py3-none-any.whl.metadata (5.5 kB)
+#8 10.28 Collecting blinker>=1.9.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 10.40   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+#8 10.58 Collecting click>=8.1.3 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 10.70   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#8 10.87 Collecting itsdangerous>=2.2.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 11.05   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#8 11.23 Collecting jinja2>=3.1.2 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 11.32   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#8 11.71 Collecting markupsafe>=2.1.1 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 11.82   Downloading markupsafe-3.0.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#8 11.98 Collecting werkzeug>=3.1.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 12.06   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+#8 12.24 Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+#8 12.66 Downloading redis-8.1.0-py3-none-any.whl (560 kB)
+#8 13.94    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 560.6/560.6 kB 440.9 kB/s  0:00:01
+#8 14.07 Downloading gunicorn-26.2.0-py3-none-any.whl (228 kB)
+#8 14.63 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+#8 14.75 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#8 15.13 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#8 15.33 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#8 15.70 Downloading markupsafe-3.0.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (23 kB)
+#8 15.88 Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+#8 16.79 Installing collected packages: redis, markupsafe, itsdangerous, gunicorn, click, blinker, werkzeug, jinja2, Flask
+#8 19.38 
+#8 19.39 Successfully installed Flask-3.1.3 blinker-1.9.0 click-8.5.0 gunicorn-26.2.0 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 redis-8.1.0 werkzeug-3.1.9
+#8 19.39 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#8 DONE 19.6s
+
+#9 [5/6] COPY . .
+#9 DONE 0.1s
+
+#10 [6/6] RUN useradd --system --no-create-home app
+#10 DONE 0.5s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 2.2s done
+#11 exporting manifest sha256:d3c72b5933729ebd0dcaedb56597f95426c9ba68db7e01b59c1ba9722f0c6c58 0.0s done
+#11 exporting config sha256:8d882ea3ec92dd31ab31d3ed45c29e66408987e32e83f440be1fef152256ca82 0.0s done
+#11 exporting attestation manifest sha256:6fe49de61e975c402e9400b260c30740fcc3ba387c4b889eb715d1af933796ff
+#11 exporting attestation manifest sha256:6fe49de61e975c402e9400b260c30740fcc3ba387c4b889eb715d1af933796ff 0.1s done
+#11 exporting manifest list sha256:2d56249927c7adbbaaeb7fd2d214000ed8b86da99d6c64f79583c5c6ea71534d 0.0s done
+#11 naming to docker.io/library/friendlyhello:latest done
+#11 unpacking to docker.io/library/friendlyhello:latest
+#11 unpacking to docker.io/library/friendlyhello:latest 0.6s done
+#11 DONE 3.1s

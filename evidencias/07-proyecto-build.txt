@@ -1,0 +1,69 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.08kB 0.0s done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 0.6s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/maven:3.9.16-eclipse-temurin-21-noble
+#4 DONE 0.3s
+
+#5 [internal] load metadata for docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble
+#5 DONE 0.3s
+
+#6 [internal] load .dockerignore
+#6 transferring context: 161B 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 DONE 0.0s
+
+#8 [build 1/6] FROM docker.io/library/maven:3.9.16-eclipse-temurin-21-noble@sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320
+#8 resolve docker.io/library/maven:3.9.16-eclipse-temurin-21-noble@sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320
+#8 resolve docker.io/library/maven:3.9.16-eclipse-temurin-21-noble@sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320 0.1s done
+#8 ...
+
+#7 [internal] load build context
+#7 transferring context: 9.64kB 0.0s done
+#7 DONE 0.1s
+
+#9 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c
+#9 resolve docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c 0.1s done
+#9 DONE 0.3s
+
+#8 [build 1/6] FROM docker.io/library/maven:3.9.16-eclipse-temurin-21-noble@sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320
+#8 DONE 0.5s
+
+#9 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c
+#9 ...
+
+#10 [build 2/6] WORKDIR /src
+#10 DONE 0.1s
+
+#11 [build 3/6] COPY pom.xml .
+#11 DONE 0.1s
+
+#9 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c
+#9 sha256:c0911c87c1c74b29ce1bb866a50a6ae50a316c3b9b068e7c558312f827e151a1 0B / 2.46kB 0.2s
+#9 sha256:97cb90eb1a2d7da0184ac4c165eeeb9defb596958c6b31f8d8af4e51814329f7 0B / 157B 0.2s
+#9 sha256:f110615a9f6f3376123623427eb4979de0495b4a0b84273f23b01f2b42149382 0B / 53.10MB 0.2s
+#9 sha256:aaf861d4f8188e5ffe8a72588a029791e5605215fc8e74d125ac87d2372d07ff 0B / 16.97MB 0.2s
+#9 sha256:c0911c87c1c74b29ce1bb866a50a6ae50a316c3b9b068e7c558312f827e151a1 2.46kB / 2.46kB 0.3s done
+#9 sha256:97cb90eb1a2d7da0184ac4c165eeeb9defb596958c6b31f8d8af4e51814329f7 157B / 157B 0.4s done
+#9 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 0B / 29.77MB 0.3s
+#9 sha256:f110615a9f6f3376123623427eb4979de0495b4a0b84273f23b01f2b42149382 2.10MB / 53.10MB 5.3s
+#9 sha256:aaf861d4f8188e5ffe8a72588a029791e5605215fc8e74d125ac87d2372d07ff 0B / 16.97MB 5.3s
+#9 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 1.05MB / 29.77MB 5.4s
+#9 sha256:aaf861d4f8188e5ffe8a72588a029791e5605215fc8e74d125ac87d2372d07ff 1.05MB / 16.97MB 7.1s
+#9 ...
+
+#12 [build 4/6] RUN --mount=type=cache,target=/root/.m2 mvn -B -ntp -q dependency:go-offline
+#12 ...
+
+#9 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c

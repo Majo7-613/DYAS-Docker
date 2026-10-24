@@ -1,0 +1,127 @@
+Unable to find image 'maven:3.9.16-eclipse-temurin-21-noble' locally
+3.9.16-eclipse-temurin-21-noble: Pulling from library/maven
+405aa165b3ac: Pulling fs layer
+edd1ed89f0d4: Pulling fs layer
+49cf9009e0af: Pulling fs layer
+c5b9275bc0db: Pulling fs layer
+f1408710f65c: Pulling fs layer
+1bf7f7b7d02f: Pulling fs layer
+bd0bb49686d3: Pulling fs layer
+07bad0cccfa1: Pulling fs layer
+a466b9e11010: Pulling fs layer
+405aa165b3ac: Download complete
+a466b9e11010: Download complete
+49cf9009e0af: Download complete
+f1408710f65c: Download complete
+1bf7f7b7d02f: Download complete
+c5b9275bc0db: Download complete
+edd1ed89f0d4: Download complete
+edd1ed89f0d4: Pull complete
+c5b9275bc0db: Pull complete
+bd0bb49686d3: Download complete
+07bad0cccfa1: Download complete
+f1408710f65c: Pull complete
+07bad0cccfa1: Pull complete
+49cf9009e0af: Pull complete
+bd0bb49686d3: Pull complete
+405aa165b3ac: Pull complete
+a466b9e11010: Pull complete
+1bf7f7b7d02f: Pull complete
+Digest: sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320
+Status: Downloaded newer image for maven:3.9.16-eclipse-temurin-21-noble
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ---------------------< edu.unisabana.dyas:tareas >----------------------
+[INFO] Building tareas 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.5.0:resources (default-resources) @ tareas ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.15.0:compile (default-compile) @ tareas ---
+[INFO] Recompiling the module because of added or removed source files.
+[INFO] Compiling 4 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.5.0:testResources (default-testResources) @ tareas ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.15.0:testCompile (default-testCompile) @ tareas ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ tareas ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running edu.unisabana.dyas.tareas.TareasApplicationTests
+04:07:58.331 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [edu.unisabana.dyas.tareas.TareasApplicationTests]: TareasApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+04:08:00.696 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration edu.unisabana.dyas.tareas.TareasApplication for test class edu.unisabana.dyas.tareas.TareasApplicationTests
+04:08:02.569 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [edu.unisabana.dyas.tareas.TareasApplicationTests]: TareasApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+04:08:02.580 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration edu.unisabana.dyas.tareas.TareasApplication for test class edu.unisabana.dyas.tareas.TareasApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-10-24T04:08:07.590Z  INFO 132 --- [           main] e.u.dyas.tareas.TareasApplicationTests   : Starting TareasApplicationTests using Java 21.0.12.1 with PID 132 (started by root in /src)
+2026-10-24T04:08:07.602Z  INFO 132 --- [           main] e.u.dyas.tareas.TareasApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2026-10-24T04:08:16.757Z  INFO 132 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-10-24T04:08:19.045Z  INFO 132 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 771 ms. Found 1 JPA repository interface.
+2026-10-24T04:08:24.775Z  INFO 132 --- [           main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-10-24T04:08:26.448Z  INFO 132 --- [           main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.4.13.Final
+2026-10-24T04:08:39.745Z  INFO 132 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-10-24T04:08:40.564Z  INFO 132 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-10-24T04:08:44.413Z  INFO 132 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:tareas user=SA
+2026-10-24T04:08:44.467Z  INFO 132 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-10-24T04:08:45.596Z  INFO 132 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:h2:mem:tareas]
+	Database driver: H2 JDBC Driver
+	Database dialect: H2Dialect
+	Database version: 2.4.240
+	Default catalog/schema: TAREAS/PUBLIC
+	Autocommit mode: undefined/unknown
+	Isolation level: READ_COMMITTED [default READ_COMMITTED]
+	JDBC fetch size: 100
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-10-24T04:09:09.766Z  INFO 132 --- [           main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-10-24T04:09:10.647Z  INFO 132 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-10-24T04:09:11.271Z  INFO 132 --- [           main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-10-24T04:09:13.182Z  WARN 132 --- [           main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-10-24T04:09:19.439Z  INFO 132 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-10-24T04:09:20.539Z  INFO 132 --- [           main] e.u.dyas.tareas.TareasApplicationTests   : Started TareasApplicationTests in 76.62 seconds (process running for 97.92)
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+WARNING: A Java agent has been loaded dynamically (/root/.m2/repository/net/bytebuddy/byte-buddy-agent/1.18.15/byte-buddy-agent-1.18.15.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 105.9 s -- in edu.unisabana.dyas.tareas.TareasApplicationTests
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.5.1:jar (default-jar) @ tareas ---
+[INFO] Building jar: /src/target/tareas-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- spring-boot:4.1.2:repackage (repackage) @ tareas ---
+[INFO] Replacing main artifact /src/target/tareas-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /src/target/tareas-0.0.1-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  07:10 min
+[INFO] Finished at: 2026-10-24T04:10:34Z
+[INFO] ------------------------------------------------------------------------

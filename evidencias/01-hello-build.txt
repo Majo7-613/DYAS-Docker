@@ -1,0 +1,49 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 83B 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/busybox:1.37
+#2 DONE 4.5s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 DONE 0.0s
+
+#5 [1/3] FROM docker.io/library/busybox:1.37@sha256:bdf57e528e45e4433820e045b29b4597825a1c9e38353532d90a01445013f82e
+#5 resolve docker.io/library/busybox:1.37@sha256:bdf57e528e45e4433820e045b29b4597825a1c9e38353532d90a01445013f82e 0.0s done
+#5 ...
+
+#4 [internal] load build context
+#4 transferring context: 38B 0.0s done
+#4 DONE 0.1s
+
+#5 [1/3] FROM docker.io/library/busybox:1.37@sha256:bdf57e528e45e4433820e045b29b4597825a1c9e38353532d90a01445013f82e
+#5 sha256:68fe9bff2ad4ad46da3e58db03faa64eb73c0ff16d546b0c42539eaa9854cb7f 0B / 2.21MB 0.2s
+#5 sha256:68fe9bff2ad4ad46da3e58db03faa64eb73c0ff16d546b0c42539eaa9854cb7f 1.05MB / 2.21MB 1.4s
+#5 sha256:68fe9bff2ad4ad46da3e58db03faa64eb73c0ff16d546b0c42539eaa9854cb7f 2.10MB / 2.21MB 2.0s
+#5 sha256:68fe9bff2ad4ad46da3e58db03faa64eb73c0ff16d546b0c42539eaa9854cb7f 2.21MB / 2.21MB 2.0s done
+#5 extracting sha256:68fe9bff2ad4ad46da3e58db03faa64eb73c0ff16d546b0c42539eaa9854cb7f 0.1s done
+#5 DONE 2.2s
+
+#6 [2/3] COPY hello /
+#6 DONE 0.1s
+
+#7 [3/3] RUN cat /hello
+#7 0.278 hello
+#7 DONE 0.3s
+
+#8 exporting to image
+#8 exporting layers 0.1s done
+#8 exporting manifest sha256:9fbe42280463a509ab72513dbb98486bf4c8981fc4ec4c9b9491f7f96e65de09 0.0s done
+#8 exporting config sha256:615f7aa9a9abd8122bb985745d33adaf837058650ec4d8e6b480edfb6a309248 0.0s done
+#8 exporting attestation manifest sha256:771854d064f6441e7f540e7e5dc0aa011e0d448f5f9de0f85ccb7769933d980f 0.0s done
+#8 exporting manifest list sha256:9970a1a2f318a29375c0ec24d93a08387c2b61e50eb6e849e1e93c28f407997d 0.0s done
+#8 naming to docker.io/library/helloapp:v1
+#8 naming to docker.io/library/helloapp:v1 done
+#8 unpacking to docker.io/library/helloapp:v1 0.1s done
+#8 DONE 0.4s

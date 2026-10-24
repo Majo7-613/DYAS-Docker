@@ -1,0 +1,4 @@
+api@internal enabled 0 servidores
+dashboard@internal enabled 0 servidores
+noop@internal enabled 0 servidores
+web@docker enabled 5 servidores

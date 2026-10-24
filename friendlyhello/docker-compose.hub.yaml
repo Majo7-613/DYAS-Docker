@@ -1,0 +1,21 @@
+# Ejercicio 1 (Parte 3): la misma aplicación, pero usando la imagen publicada en Docker Hub
+# en lugar de construirla con build: .
+#   DOCKERHUB_USER=<usuario> docker compose -f docker-compose.hub.yaml up -d
+services:
+  web:
+    image: ${DOCKERHUB_USER:?Defina DOCKERHUB_USER con su usuario de Docker Hub}/friendlyhello:0.1.0
+    ports:
+      - "${WEB_PORT:-4000}:8000"
+    depends_on:
+      redis:
+        condition: service_healthy
+  redis:
+    image: redis:8.8
+    command: redis-server --appendonly yes
+    volumes:
+      - ./data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5

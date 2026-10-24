@@ -1,0 +1,77 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.malorden
+#1 transferring dockerfile: 659B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.14-slim
+#2 DONE 0.8s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 129B 0.0s done
+#3 DONE 0.0s
+
+#4 [1/5] FROM docker.io/library/python:3.14-slim@sha256:0514bc76712d64f8bb48adcb95b1ab0d88c69fee95d62fe4c18ee948bee9b1e1
+#4 resolve docker.io/library/python:3.14-slim@sha256:0514bc76712d64f8bb48adcb95b1ab0d88c69fee95d62fe4c18ee948bee9b1e1 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 1.07kB 0.0s done
+#5 DONE 0.0s
+
+#6 [2/5] WORKDIR /app
+#6 CACHED
+
+#7 [3/5] COPY . .
+#7 DONE 0.3s
+
+#8 [4/5] RUN pip install --no-cache-dir -r requirements.txt
+#8 5.103 Collecting Flask==3.1.3 (from -r requirements.txt (line 1))
+#8 5.712   Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+#8 6.489 Collecting redis==8.1.0 (from -r requirements.txt (line 2))
+#8 6.732   Downloading redis-8.1.0-py3-none-any.whl.metadata (16 kB)
+#8 7.089 Collecting gunicorn==26.2.0 (from -r requirements.txt (line 3))
+#8 7.263   Downloading gunicorn-26.2.0-py3-none-any.whl.metadata (5.5 kB)
+#8 7.894 Collecting blinker>=1.9.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 8.049   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+#8 8.324 Collecting click>=8.1.3 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 8.477   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#8 8.660 Collecting itsdangerous>=2.2.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 8.820   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#8 9.082 Collecting jinja2>=3.1.2 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 9.195   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#8 11.07 Collecting markupsafe>=2.1.1 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 11.23   Downloading markupsafe-3.0.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#8 11.56 Collecting werkzeug>=3.1.0 (from Flask==3.1.3->-r requirements.txt (line 1))
+#8 11.66   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+#8 11.77 Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+#8 12.35 Downloading redis-8.1.0-py3-none-any.whl (560 kB)
+#8 16.04    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 560.6/560.6 kB 132.6 kB/s  0:00:03
+#8 16.13 Downloading gunicorn-26.2.0-py3-none-any.whl (228 kB)
+#8 17.26 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+#8 17.38 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#8 17.95 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#8 18.06 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#8 18.69 Downloading markupsafe-3.0.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (23 kB)
+#8 18.86 Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+#8 20.84 Installing collected packages: redis, markupsafe, itsdangerous, gunicorn, click, blinker, werkzeug, jinja2, Flask
+#8 23.79 
+#8 23.79 Successfully installed Flask-3.1.3 blinker-1.9.0 click-8.5.0 gunicorn-26.2.0 itsdangerous-2.2.0 jinja2-3.1.6 markupsafe-3.0.4 redis-8.1.0 werkzeug-3.1.9
+#8 23.79 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#8 DONE 24.1s
+
+#9 [5/5] RUN useradd --system --no-create-home app
+#9 DONE 0.5s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 4.0s done
+#10 exporting manifest sha256:b459f8382052b7a6f47cb365f52ea619f5cfbce94606b07e93d85e9c866b61d0 0.0s done
+#10 exporting config sha256:1f3b8ebeb9dbc1cec97920143a275df64595d70723de8a00e5d0d484a29bd762 0.0s done
+#10 exporting attestation manifest sha256:7c45d2b5d841232e8cb861fadb5b9b4b59d922113fe545da8463eaa2d46b969d
+#10 exporting attestation manifest sha256:7c45d2b5d841232e8cb861fadb5b9b4b59d922113fe545da8463eaa2d46b969d 0.1s done
+#10 exporting manifest list sha256:5e9c7ad385fde4a5adcaac4edb098155348b44ac1a584ea4851caa630ac17239 0.0s done
+#10 naming to docker.io/library/friendlyhello:malorden done
+#10 unpacking to docker.io/library/friendlyhello:malorden
+#10 unpacking to docker.io/library/friendlyhello:malorden 0.7s done
+#10 DONE 4.9s

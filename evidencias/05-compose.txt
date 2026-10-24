@@ -1,0 +1,14 @@
+== 5 peticiones a http://localhost:4001
+<h3>Hola World!</h3><b>Hostname:</b> c5802bdd2cad<br/><b>Visits:</b> 1
+<h3>Hola World!</h3><b>Hostname:</b> c5802bdd2cad<br/><b>Visits:</b> 2
+<h3>Hola World!</h3><b>Hostname:</b> c5802bdd2cad<br/><b>Visits:</b> 3
+<h3>Hola World!</h3><b>Hostname:</b> c5802bdd2cad<br/><b>Visits:</b> 4
+<h3>Hola World!</h3><b>Hostname:</b> c5802bdd2cad<br/><b>Visits:</b> 5
+
+== docker compose ps
+NAME                    IMAGE               STATUS                    PORTS
+friendlyhello-redis-1   redis:8.8           Up 14 seconds (healthy)   6379/tcp
+friendlyhello-web-1     friendlyhello-web   Up 8 seconds (healthy)    0.0.0.0:4001->8000/tcp, [::]:4001->8000/tcp
+
+== Tras docker compose down + up (persistencia en ./data)
+<h3>Hola World!</h3><b>Hostname:</b> c7447db0f111<br/><b>Visits:</b> 6

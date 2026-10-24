@@ -1,0 +1,16 @@
+# Datos de Redis generados por Compose
+friendlyhello/data/
+data/
+
+# Claves locales
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Java / Maven
+target/
+
+# SBOM y reportes generados
+*.cdx.json

@@ -1,0 +1,7 @@
+== curl http://localhost:4001  (docker run --rm -p 4001:8000 friendlyhello)
+<h3>Hello World!</h3><b>Hostname:</b> f59e209e7a78<br/><b>Visits:</b> <i>cannot connect to Redis, counter disabled</i>
+== docker ps
+CONTAINER ID   IMAGE           STATUS                    PORTS
+f59e209e7a78   friendlyhello   Up 13 seconds (healthy)   0.0.0.0:4001->8000/tcp, [::]:4001->8000/tcp
+== docker exec fh-test id
+uid=999(app) gid=999(app) groups=999(app)

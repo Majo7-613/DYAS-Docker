@@ -1,0 +1,39 @@
+== docker compose -f docker-compose.traefik.yaml ps
+NAME                      IMAGE               STATUS                    PORTS
+friendlyhello-redis-1     redis:8.8           Up 11 seconds (healthy)   6379/tcp
+friendlyhello-traefik-1   traefik:v3.7        Up 11 seconds             0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:4001->4000/tcp, [::]:4001->4000/tcp
+friendlyhello-web-1       friendlyhello-web   Up 4 seconds (healthy)    8000/tcp
+friendlyhello-web-2       friendlyhello-web   Up 5 seconds (healthy)    8000/tcp
+friendlyhello-web-3       friendlyhello-web   Up 5 seconds (healthy)    8000/tcp
+friendlyhello-web-4       friendlyhello-web   Up 6 seconds (healthy)    8000/tcp
+friendlyhello-web-5       friendlyhello-web   Up 5 seconds (healthy)    8000/tcp
+
+== 20 peticiones a http://localhost:4001 a través de Traefik
+<h3>Hola World!</h3><b>Hostname:</b> 042216435bb6<br/><b>Visits:</b> 7
+<h3>Hola World!</h3><b>Hostname:</b> 89444097c394<br/><b>Visits:</b> 8
+<h3>Hola World!</h3><b>Hostname:</b> 60a65d0948c2<br/><b>Visits:</b> 9
+<h3>Hola World!</h3><b>Hostname:</b> 95ccd20d84f0<br/><b>Visits:</b> 10
+<h3>Hola World!</h3><b>Hostname:</b> 6e44d0d80547<br/><b>Visits:</b> 11
+<h3>Hola World!</h3><b>Hostname:</b> 95ccd20d84f0<br/><b>Visits:</b> 12
+<h3>Hola World!</h3><b>Hostname:</b> 6e44d0d80547<br/><b>Visits:</b> 13
+<h3>Hola World!</h3><b>Hostname:</b> 89444097c394<br/><b>Visits:</b> 14
+<h3>Hola World!</h3><b>Hostname:</b> 042216435bb6<br/><b>Visits:</b> 15
+<h3>Hola World!</h3><b>Hostname:</b> 60a65d0948c2<br/><b>Visits:</b> 16
+<h3>Hola World!</h3><b>Hostname:</b> 042216435bb6<br/><b>Visits:</b> 17
+<h3>Hola World!</h3><b>Hostname:</b> 60a65d0948c2<br/><b>Visits:</b> 18
+<h3>Hola World!</h3><b>Hostname:</b> 6e44d0d80547<br/><b>Visits:</b> 19
+<h3>Hola World!</h3><b>Hostname:</b> 95ccd20d84f0<br/><b>Visits:</b> 20
+<h3>Hola World!</h3><b>Hostname:</b> 89444097c394<br/><b>Visits:</b> 21
+<h3>Hola World!</h3><b>Hostname:</b> 95ccd20d84f0<br/><b>Visits:</b> 22
+<h3>Hola World!</h3><b>Hostname:</b> 89444097c394<br/><b>Visits:</b> 23
+<h3>Hola World!</h3><b>Hostname:</b> 60a65d0948c2<br/><b>Visits:</b> 24
+<h3>Hola World!</h3><b>Hostname:</b> 042216435bb6<br/><b>Visits:</b> 25
+<h3>Hola World!</h3><b>Hostname:</b> 6e44d0d80547<br/><b>Visits:</b> 26
+== Hostnames distintos:
+      4 042216435bb6
+      4 60a65d0948c2
+      4 6e44d0d80547
+      4 89444097c394
+      4 95ccd20d84f0
+== 127.0.0.1 (esperado 404):
+404 page not found
