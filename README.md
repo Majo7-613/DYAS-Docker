@@ -553,7 +553,7 @@ Esta parte se hace en el **repositorio del proyecto del equipo** (aplicación Sp
 # syntax=docker/dockerfile:1
 
 # Etapa 1: compilar el .jar con Maven (las pruebas ya corrieron en el pipeline de CI)
-FROM maven:3.9.16-eclipse-temurin-21-noble AS build
+FROM maven:3.9.16-eclipse-temurin-25-noble AS build
 WORKDIR /src
 COPY pom.xml .
 RUN --mount=type=cache,target=/root/.m2 mvn -B -ntp -q dependency:go-offline
@@ -562,7 +562,7 @@ RUN --mount=type=cache,target=/root/.m2 mvn -B -ntp -q package -DskipTests \
  && cp target/*.jar /app.jar
 
 # Etapa 2: imagen final solo con el JRE y el .jar
-FROM eclipse-temurin:21.0.12.1_1-jre-noble
+FROM eclipse-temurin:25.0.4.1_1-jre-noble
 RUN groupadd --system app && useradd --system --gid app --no-create-home app
 WORKDIR /app
 COPY --from=build --chown=app:app /app.jar app.jar
@@ -597,7 +597,7 @@ docker-compose*.yml
 | `COPY pom.xml` antes de `COPY src` | Las dependencias se descargan en una capa propia que se reutiliza mientras el `pom.xml` no cambie. |
 | `--mount=type=cache,target=/root/.m2` | Caché de BuildKit para las dependencias de Maven entre *builds*. |
 | `-DskipTests` | Las pruebas ya se ejecutan en el pipeline de CI con `mvn verify`; no se repiten al construir la imagen. |
-| `maven:3.9.16-eclipse-temurin-21-noble` y `eclipse-temurin:21.0.12.1_1-jre-noble` | Imágenes base con **versión completa**. Una etiqueta como `21-jre` cambia de contenido con cada parche y el mismo Dockerfile produce imágenes distintas según el día. Dependabot (o una revisión periódica) propone la versión nueva. |
+| `maven:3.9.16-eclipse-temurin-25-noble` y `eclipse-temurin:25.0.4.1_1-jre-noble` | Imágenes base con **versión completa**. Una etiqueta como `25-jre` cambia de contenido con cada parche y el mismo Dockerfile produce imágenes distintas según el día. Dependabot (o una revisión periódica) propone la versión nueva. |
 | `HEALTHCHECK` con `/actuator/health/readiness` | Indica si la aplicación está lista para recibir peticiones. A diferencia de `/actuator/health`, no incluye la base de datos: si la base de datos falla, Docker no reinicia la aplicación sin necesidad. Si el proyecto no tiene Actuator, agrega la dependencia `spring-boot-starter-actuator`. Las imágenes `-noble` (Ubuntu) traen `curl`; las `-alpine` no. |
 | `-XX:MaxRAMPercentage=75` | Sin esta opción la JVM calcula su memoria con valores pensados para un servidor completo. Con ella respeta el límite de memoria del contenedor y deja espacio para el resto del proceso. |
 | `.env` en `.dockerignore` | El archivo con las claves locales nunca debe terminar dentro de la imagen. |

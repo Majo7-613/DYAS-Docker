@@ -14,7 +14,7 @@
 	<name>tareas</name>
 	<description>API REST de tareas contenerizada para el Taller de Docker</description>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>25</java.version>
 	</properties>
 	<dependencies>
 		<dependency>

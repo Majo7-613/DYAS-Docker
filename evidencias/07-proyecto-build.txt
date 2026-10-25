@@ -1,69 +1,184 @@
 #0 building with "desktop-linux" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile: 1.08kB 0.0s done
+#1 transferring dockerfile: 1.27kB done
 #1 DONE 0.0s
 
 #2 resolve image config for docker-image://docker.io/docker/dockerfile:1
-#2 DONE 0.6s
+#2 DONE 0.3s
 
 #3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
 #3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.0s done
 #3 CACHED
 
-#4 [internal] load metadata for docker.io/library/maven:3.9.16-eclipse-temurin-21-noble
+#4 [internal] load metadata for docker.io/library/maven:3.9.16-eclipse-temurin-25-noble
 #4 DONE 0.3s
 
-#5 [internal] load metadata for docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble
+#5 [internal] load metadata for docker.io/library/eclipse-temurin:25.0.4.1_1-jre-noble
 #5 DONE 0.3s
 
 #6 [internal] load .dockerignore
-#6 transferring context: 161B 0.0s done
+#6 transferring context: 161B done
 #6 DONE 0.0s
 
-#7 [internal] load build context
+#7 [build 1/6] FROM docker.io/library/maven:3.9.16-eclipse-temurin-25-noble@sha256:93b8a14ea2f412782e4e842651273b4d903e35cc496284f178fbbe2d67d00976
+#7 resolve docker.io/library/maven:3.9.16-eclipse-temurin-25-noble@sha256:93b8a14ea2f412782e4e842651273b4d903e35cc496284f178fbbe2d67d00976 0.0s done
 #7 DONE 0.0s
 
-#8 [build 1/6] FROM docker.io/library/maven:3.9.16-eclipse-temurin-21-noble@sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320
-#8 resolve docker.io/library/maven:3.9.16-eclipse-temurin-21-noble@sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320
-#8 resolve docker.io/library/maven:3.9.16-eclipse-temurin-21-noble@sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320 0.1s done
-#8 ...
+#8 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:25.0.4.1_1-jre-noble@sha256:3f2223fe04b750aa5a8179e29b5c9a1ddf7665fc9bb08bfe11ad01d143bc13a5
+#8 resolve docker.io/library/eclipse-temurin:25.0.4.1_1-jre-noble@sha256:3f2223fe04b750aa5a8179e29b5c9a1ddf7665fc9bb08bfe11ad01d143bc13a5 0.0s done
+#8 DONE 0.1s
 
-#7 [internal] load build context
-#7 transferring context: 9.64kB 0.0s done
-#7 DONE 0.1s
-
-#9 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c
-#9 resolve docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c 0.1s done
-#9 DONE 0.3s
-
-#8 [build 1/6] FROM docker.io/library/maven:3.9.16-eclipse-temurin-21-noble@sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320
-#8 DONE 0.5s
-
-#9 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c
-#9 ...
+#9 [internal] load build context
+#9 transferring context: 1.25kB 0.0s done
+#9 DONE 0.0s
 
 #10 [build 2/6] WORKDIR /src
-#10 DONE 0.1s
+#10 CACHED
 
 #11 [build 3/6] COPY pom.xml .
-#11 DONE 0.1s
-
-#9 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c
-#9 sha256:c0911c87c1c74b29ce1bb866a50a6ae50a316c3b9b068e7c558312f827e151a1 0B / 2.46kB 0.2s
-#9 sha256:97cb90eb1a2d7da0184ac4c165eeeb9defb596958c6b31f8d8af4e51814329f7 0B / 157B 0.2s
-#9 sha256:f110615a9f6f3376123623427eb4979de0495b4a0b84273f23b01f2b42149382 0B / 53.10MB 0.2s
-#9 sha256:aaf861d4f8188e5ffe8a72588a029791e5605215fc8e74d125ac87d2372d07ff 0B / 16.97MB 0.2s
-#9 sha256:c0911c87c1c74b29ce1bb866a50a6ae50a316c3b9b068e7c558312f827e151a1 2.46kB / 2.46kB 0.3s done
-#9 sha256:97cb90eb1a2d7da0184ac4c165eeeb9defb596958c6b31f8d8af4e51814329f7 157B / 157B 0.4s done
-#9 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 0B / 29.77MB 0.3s
-#9 sha256:f110615a9f6f3376123623427eb4979de0495b4a0b84273f23b01f2b42149382 2.10MB / 53.10MB 5.3s
-#9 sha256:aaf861d4f8188e5ffe8a72588a029791e5605215fc8e74d125ac87d2372d07ff 0B / 16.97MB 5.3s
-#9 sha256:f2b4ef06ff01a67d4bed7657a4ae379a7d07934b7c3e743454a22a0d5275fb2b 1.05MB / 29.77MB 5.4s
-#9 sha256:aaf861d4f8188e5ffe8a72588a029791e5605215fc8e74d125ac87d2372d07ff 1.05MB / 16.97MB 7.1s
-#9 ...
+#11 CACHED
 
 #12 [build 4/6] RUN --mount=type=cache,target=/root/.m2 mvn -B -ntp -q dependency:go-offline
-#12 ...
+#12 CACHED
 
-#9 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:21.0.12.1_1-jre-noble@sha256:35501d3f93173b420ac9001658eb68157e813316b865087e345c187fca422c4c
+#13 [build 5/6] COPY src ./src
+#13 CACHED
+
+#14 [build 6/6] RUN --mount=type=cache,target=/root/.m2 mvn -B -ntp -q package -DskipTests  && cp target/tareas-*.jar /app.jar
+#14 CACHED
+
+#15 [stage-1 2/4] RUN apt-get update  && apt-get install -y --no-install-recommends curl  && rm -rf /var/lib/apt/lists/*  && groupadd --system app && useradd --system --gid app --no-create-home app
+#15 0.865 Get:1 http://archive.ubuntu.com/ubuntu noble InRelease [256 kB]
+#15 0.865 Get:2 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+#15 1.772 Get:3 http://security.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [55.6 kB]
+#15 2.074 Get:4 http://security.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [2,122 kB]
+#15 2.332 Get:5 http://archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+#15 2.756 Get:6 http://archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+#15 3.164 Get:7 http://archive.ubuntu.com/ubuntu noble/multiverse amd64 Packages [331 kB]
+#15 4.087 Get:8 http://security.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1,549 kB]
+#15 4.123 Get:9 http://archive.ubuntu.com/ubuntu noble/restricted amd64 Packages [117 kB]
+#15 4.140 Get:10 http://archive.ubuntu.com/ubuntu noble/universe amd64 Packages [19.3 MB]
+#15 4.895 Get:11 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1,411 kB]
+#15 42.92 Get:12 http://archive.ubuntu.com/ubuntu noble/main amd64 Packages [1,808 kB]
+#15 47.64 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1,733 kB]
+#15 50.57 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [2,231 kB]
+#15 55.98 Get:15 http://archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [2,170 kB]
+#15 58.20 Get:16 http://archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [61.7 kB]
+#15 58.24 Get:17 http://archive.ubuntu.com/ubuntu noble-backports/main amd64 Packages [49.0 kB]
+#15 58.25 Get:18 http://archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [36.0 kB]
+#15 58.26 Get:19 http://archive.ubuntu.com/ubuntu noble-backports/multiverse amd64 Packages [669 B]
+#15 58.36 Fetched 33.6 MB in 53s (639 kB/s)
+#15 58.36 Reading package lists...
+#15 59.92 Reading package lists...
+#15 61.21 Building dependency tree...
+#15 61.51 Reading state information...
+#15 61.87 The following additional packages will be installed:
+#15 61.87   libcurl4t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3
+#15 61.87   libkrb5support0 libldap2 libnghttp2-14 libpsl5t64 librtmp1 libsasl2-2
+#15 61.88   libsasl2-modules-db libssh-4
+#15 61.88 Suggested packages:
+#15 61.88   krb5-doc krb5-user
+#15 61.88 Recommended packages:
+#15 61.88   krb5-locales libldap-common publicsuffix libsasl2-modules
+#15 61.95 The following NEW packages will be installed:
+#15 61.95   curl libcurl4t64 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3
+#15 61.95   libkrb5support0 libldap2 libnghttp2-14 libpsl5t64 librtmp1 libsasl2-2
+#15 61.95   libsasl2-modules-db libssh-4
+#15 62.91 0 upgraded, 14 newly installed, 0 to remove and 5 not upgraded.
+#15 62.91 Need to get 1,838 kB of archives.
+#15 62.91 After this operation, 5,148 kB of additional disk space will be used.
+#15 62.91 Get:1 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5support0 amd64 1.20.1-6ubuntu2.10 [34.9 kB]
+#15 64.20 Get:2 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libk5crypto3 amd64 1.20.1-6ubuntu2.10 [81.9 kB]
+#15 64.59 Get:3 http://archive.ubuntu.com/ubuntu noble/main amd64 libkeyutils1 amd64 1.6.3-3build1 [9,490 B]
+#15 64.64 Get:4 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libkrb5-3 amd64 1.20.1-6ubuntu2.10 [348 kB]
+#15 65.20 Get:5 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libgssapi-krb5-2 amd64 1.20.1-6ubuntu2.10 [143 kB]
+#15 65.56 Get:6 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libnghttp2-14 amd64 1.59.0-1ubuntu0.4 [74.6 kB]
+#15 65.56 Get:7 http://archive.ubuntu.com/ubuntu noble/main amd64 libpsl5t64 amd64 0.21.2-1.1build1 [57.1 kB]
+#15 65.57 Get:8 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsasl2-modules-db amd64 2.1.28+dfsg1-5ubuntu3.1 [20.4 kB]
+#15 65.57 Get:9 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libsasl2-2 amd64 2.1.28+dfsg1-5ubuntu3.1 [53.2 kB]
+#15 65.57 Get:10 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libldap2 amd64 2.6.10+dfsg-0ubuntu0.24.04.1 [198 kB]
+#15 65.58 Get:11 http://archive.ubuntu.com/ubuntu noble/main amd64 librtmp1 amd64 2.4+20151223.gitfa8646d.1-2build7 [56.3 kB]
+#15 65.58 Get:12 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libssh-4 amd64 0.10.6-2ubuntu0.5 [191 kB]
+#15 65.84 Get:13 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 libcurl4t64 amd64 8.5.0-2ubuntu10.16 [344 kB]
+#15 66.17 Get:14 http://archive.ubuntu.com/ubuntu noble-updates/main amd64 curl amd64 8.5.0-2ubuntu10.16 [226 kB]
+#15 66.47 debconf: delaying package configuration, since apt-utils is not installed
+#15 66.53 Fetched 1,838 kB in 4s (431 kB/s)
+#15 66.62 Selecting previously unselected package libkrb5support0:amd64.
+#15 66.62 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 6267 files and directories currently installed.)
+#15 66.66 Preparing to unpack .../00-libkrb5support0_1.20.1-6ubuntu2.10_amd64.deb ...
+#15 66.67 Unpacking libkrb5support0:amd64 (1.20.1-6ubuntu2.10) ...
+#15 66.73 Selecting previously unselected package libk5crypto3:amd64.
+#15 66.73 Preparing to unpack .../01-libk5crypto3_1.20.1-6ubuntu2.10_amd64.deb ...
+#15 66.74 Unpacking libk5crypto3:amd64 (1.20.1-6ubuntu2.10) ...
+#15 66.79 Selecting previously unselected package libkeyutils1:amd64.
+#15 66.79 Preparing to unpack .../02-libkeyutils1_1.6.3-3build1_amd64.deb ...
+#15 66.79 Unpacking libkeyutils1:amd64 (1.6.3-3build1) ...
+#15 66.84 Selecting previously unselected package libkrb5-3:amd64.
+#15 66.84 Preparing to unpack .../03-libkrb5-3_1.20.1-6ubuntu2.10_amd64.deb ...
+#15 66.84 Unpacking libkrb5-3:amd64 (1.20.1-6ubuntu2.10) ...
+#15 66.92 Selecting previously unselected package libgssapi-krb5-2:amd64.
+#15 66.92 Preparing to unpack .../04-libgssapi-krb5-2_1.20.1-6ubuntu2.10_amd64.deb ...
+#15 66.92 Unpacking libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.10) ...
+#15 66.98 Selecting previously unselected package libnghttp2-14:amd64.
+#15 66.98 Preparing to unpack .../05-libnghttp2-14_1.59.0-1ubuntu0.4_amd64.deb ...
+#15 67.00 Unpacking libnghttp2-14:amd64 (1.59.0-1ubuntu0.4) ...
+#15 67.05 Selecting previously unselected package libpsl5t64:amd64.
+#15 67.05 Preparing to unpack .../06-libpsl5t64_0.21.2-1.1build1_amd64.deb ...
+#15 67.07 Unpacking libpsl5t64:amd64 (0.21.2-1.1build1) ...
+#15 67.12 Selecting previously unselected package libsasl2-modules-db:amd64.
+#15 67.12 Preparing to unpack .../07-libsasl2-modules-db_2.1.28+dfsg1-5ubuntu3.1_amd64.deb ...
+#15 67.12 Unpacking libsasl2-modules-db:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#15 67.20 Selecting previously unselected package libsasl2-2:amd64.
+#15 67.20 Preparing to unpack .../08-libsasl2-2_2.1.28+dfsg1-5ubuntu3.1_amd64.deb ...
+#15 67.21 Unpacking libsasl2-2:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#15 67.34 Selecting previously unselected package libldap2:amd64.
+#15 67.34 Preparing to unpack .../09-libldap2_2.6.10+dfsg-0ubuntu0.24.04.1_amd64.deb ...
+#15 67.35 Unpacking libldap2:amd64 (2.6.10+dfsg-0ubuntu0.24.04.1) ...
+#15 67.42 Selecting previously unselected package librtmp1:amd64.
+#15 67.42 Preparing to unpack .../10-librtmp1_2.4+20151223.gitfa8646d.1-2build7_amd64.deb ...
+#15 67.43 Unpacking librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build7) ...
+#15 67.48 Selecting previously unselected package libssh-4:amd64.
+#15 67.48 Preparing to unpack .../11-libssh-4_0.10.6-2ubuntu0.5_amd64.deb ...
+#15 67.49 Unpacking libssh-4:amd64 (0.10.6-2ubuntu0.5) ...
+#15 67.55 Selecting previously unselected package libcurl4t64:amd64.
+#15 67.55 Preparing to unpack .../12-libcurl4t64_8.5.0-2ubuntu10.16_amd64.deb ...
+#15 67.56 Unpacking libcurl4t64:amd64 (8.5.0-2ubuntu10.16) ...
+#15 67.60 Selecting previously unselected package curl.
+#15 67.60 Preparing to unpack .../13-curl_8.5.0-2ubuntu10.16_amd64.deb ...
+#15 67.61 Unpacking curl (8.5.0-2ubuntu10.16) ...
+#15 67.68 Setting up libkeyutils1:amd64 (1.6.3-3build1) ...
+#15 67.70 Setting up libpsl5t64:amd64 (0.21.2-1.1build1) ...
+#15 67.73 Setting up libnghttp2-14:amd64 (1.59.0-1ubuntu0.4) ...
+#15 67.78 Setting up libkrb5support0:amd64 (1.20.1-6ubuntu2.10) ...
+#15 67.79 Setting up libsasl2-modules-db:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#15 67.81 Setting up librtmp1:amd64 (2.4+20151223.gitfa8646d.1-2build7) ...
+#15 67.91 Setting up libk5crypto3:amd64 (1.20.1-6ubuntu2.10) ...
+#15 67.93 Setting up libsasl2-2:amd64 (2.1.28+dfsg1-5ubuntu3.1) ...
+#15 67.95 Setting up libkrb5-3:amd64 (1.20.1-6ubuntu2.10) ...
+#15 67.97 Setting up libldap2:amd64 (2.6.10+dfsg-0ubuntu0.24.04.1) ...
+#15 67.99 Setting up libgssapi-krb5-2:amd64 (1.20.1-6ubuntu2.10) ...
+#15 68.01 Setting up libssh-4:amd64 (0.10.6-2ubuntu0.5) ...
+#15 68.03 Setting up libcurl4t64:amd64 (8.5.0-2ubuntu10.16) ...
+#15 68.04 Setting up curl (8.5.0-2ubuntu10.16) ...
+#15 68.05 Processing triggers for libc-bin (2.39-0ubuntu8.9) ...
+#15 DONE 68.3s
+
+#16 [stage-1 3/4] WORKDIR /app
+#16 DONE 0.0s
+
+#17 [stage-1 4/4] COPY --from=build --chown=app:app /app.jar app.jar
+#17 DONE 0.2s
+
+#18 exporting to image
+#18 exporting layers
+#18 exporting layers 2.8s done
+#18 exporting manifest sha256:dd4a1aa91adad0f3584cd421369914c4bfd06d57c7520647d3e8663b7ecce3ea 0.0s done
+#18 exporting config sha256:2190ee0b7900a8020326e0f5f7c101f27ccba1000d90f74131c51bb073834970 0.0s done
+#18 exporting attestation manifest sha256:9ea04ef3941c67f3b8aae2914ca2baf0940702b697e8d22a834a6cd92b054bc3 0.0s done
+#18 exporting manifest list sha256:9d2a900329a0575ead58f59b66284d8abf8b3aaefc3c7c1979a64936d42e3944
+#18 exporting manifest list sha256:9d2a900329a0575ead58f59b66284d8abf8b3aaefc3c7c1979a64936d42e3944 0.0s done
+#18 naming to docker.io/library/proyecto:dev done
+#18 unpacking to docker.io/library/proyecto:dev
+#18 unpacking to docker.io/library/proyecto:dev 0.5s done
+#18 DONE 3.5s
