@@ -49,6 +49,8 @@ Hola World!  Hostname: c5802bdd2cad  Visits: 5
 
 ![Contador de visitas](images/04-compose-contador.png)
 
+*La captura se tomó en una ejecución posterior: el contador va en 32 porque el volumen `./data` conservó las visitas de todas las pruebas anteriores.*
+
 ## `docker compose ps`
 
 ```text
@@ -58,6 +60,8 @@ friendlyhello-web-1     friendlyhello-web   Up 8 seconds (healthy)    0.0.0.0:40
 ```
 
 ![docker compose ps](images/05-compose-ps.png)
+
+*Captura de la misma ejecución que la del contador, desde la raíz del repositorio (`docker compose -f friendlyhello/docker-compose.yaml ps`).*
 
 Los dos servicios aparecen `healthy`: `web` por el `HEALTHCHECK` del Dockerfile y `redis` por el `healthcheck` del archivo de Compose. Redis **no publica puertos**: solo es accesible desde la red interna de Compose, donde `web` lo encuentra por el nombre `redis`.
 

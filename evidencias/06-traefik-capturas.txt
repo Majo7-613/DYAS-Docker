@@ -1,0 +1,14 @@
+# Réplicas activas durante las capturas del Wiki (docker ps)
+CONTAINER ID   NAMES                 STATUS
+a08e6258048c   friendlyhello-web-2   Up 5 hours (healthy)
+a467d71d7f9c   friendlyhello-web-1   Up 5 hours (healthy)
+d61fe36ef3b5   friendlyhello-web-4   Up 5 hours (healthy)
+905a93e181bf   friendlyhello-web-5   Up 5 hours (healthy)
+7a10dd952059   friendlyhello-web-3   Up 5 hours (healthy)
+
+# 20 peticiones a http://localhost:4001 con curl (una conexión nueva por petición)
+      4 7a10dd952059
+      4 905a93e181bf
+      5 a08e6258048c
+      4 a467d71d7f9c
+      3 d61fe36ef3b5

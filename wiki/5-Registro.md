@@ -18,6 +18,8 @@ Docker Hub: latest  sha256:4a6d8d5ea5d4…
 Docker Hub: 0.1.0   sha256:4a6d8d5ea5d4…
 ```
 
+Salida: [`evidencias/10-dockerhub-tags.txt`](../blob/main/evidencias/10-dockerhub-tags.txt) (consulta a la API de Docker Hub).
+
 ![Repositorio en Docker Hub con las etiquetas 0.1.0 y latest](images/10-dockerhub.png)
 
 En la página de Docker Hub el *digest* que aparece en cada etiqueta (`75f003bf8216`) es el del manifiesto de la plataforma `linux/amd64`; el `4a6d8d5ea5d4` de la terminal es el del índice que lo agrupa. Las dos etiquetas comparten ambos.
@@ -39,6 +41,8 @@ El pipeline [`.github/workflows/ci.yml`](../blob/main/.github/workflows/ci.yml) 
 ghcr.io/majo7-613/friendlyhello:<sha>
 ghcr.io/majo7-613/proyecto:<sha>
 ```
+
+El paso *Publicar en GHCR* terminó con éxito en cada ejecución del pipeline sobre `main` (pestaña [Actions](../actions)). GHCR crea los paquetes como **privados**: aparecen en la pestaña *Packages* del perfil y, para que otra persona los descargue sin credenciales, hay que cambiarlos a públicos.
 
 ## Ejercicio 1: usar la imagen publicada
 
@@ -84,8 +88,9 @@ Salida completa: [`evidencias/11-ejercicio1.txt`](../blob/main/evidencias/11-eje
 [`friendlyhello/docker-compose.companero.yaml`](../blob/main/friendlyhello/docker-compose.companero.yaml):
 
 ```bash
-COMPANERO_IMAGE=COMPANERO_USER/friendlyhello:0.1.0 WEB_PORT=4001 docker compose -f docker-compose.companero.yaml up -d
+COMPANERO_IMAGE=<usuario-del-compañero>/friendlyhello:0.1.0 WEB_PORT=4001 docker compose -f docker-compose.companero.yaml up -d
 ```
 
+> **Estado: pendiente.** El archivo de Compose está listo, pero al momento de la entrega ningún compañero había compartido el nombre de su imagen. Cuando se tenga, el ejercicio se resuelve con el comando de arriba, sin cambiar ningún archivo.
 
-Aquí se ve el valor de un registro: se ejecutó la aplicación de otra persona **sin tener su código ni construir nada**. Solo hizo falta el nombre de la imagen. Esto es lo que hace un servidor de despliegue con la imagen que publica el pipeline.
+La idea del ejercicio es ver el valor de un registro: ejecutar la aplicación de otra persona **sin tener su código ni construir nada**, solo con el nombre de la imagen. Es lo mismo que hace un servidor de despliegue con la imagen que publica el pipeline.

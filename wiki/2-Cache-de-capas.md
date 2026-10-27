@@ -21,6 +21,8 @@
 
 ![Capa de dependencias en CACHED](images/03-cache.png)
 
+*La captura corresponde a una reconstrucción **sin cambios** en el código, por eso todas las capas, incluida `COPY . .`, aparecen en `CACHED`. La salida de texto de arriba es la reconstrucción **después** de cambiar `app.py`: ahí `COPY . .` y las capas siguientes se vuelven a ejecutar, pero `pip install` sigue en `CACHED`.*
+
 ## Orden incorrecto: `pip install` se repite
 
 ```text

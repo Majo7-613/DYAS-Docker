@@ -6,7 +6,7 @@
 
 - **Spring Boot 4.1.2** sobre **Java 25 (LTS)**, con Spring Web MVC, Spring Data JPA, Validation y Actuator.
 - **PostgreSQL 18.6** como base de datos, en su propio contenedor.
-- 2 pruebas de integración con H2 en memoria, que corren con `mvn verify` en el pipeline de CI.
+- 2 pruebas de integración con H2 en memoria, que corren con `mvn verify` en el pipeline de CI y localmente con Java 25.0.4.1: `Tests run: 2, Failures: 0, Errors: 0` ([`evidencias/07-mvn-verify.txt`](../blob/main/evidencias/07-mvn-verify.txt)).
 
 | Método | Ruta | Descripción |
 |--------|------|-------------|
@@ -44,9 +44,11 @@ COPY --from=build --chown=app:app /app.jar app.jar
 USER app
 EXPOSE 8080
 
+# Docker y Compose consultan este endpoint para saber si la aplicación está lista
 HEALTHCHECK --interval=10s --timeout=3s --start-period=60s --retries=5 \
   CMD curl -fsS http://localhost:8080/actuator/health/readiness || exit 1
 
+# La JVM usa como máximo el 75 % de la memoria que el contenedor tenga asignada
 ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75", "-jar", "/app/app.jar"]
 ```
 
@@ -55,11 +57,13 @@ ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75", "-jar", "/app/app.jar"]
 | Dos etapas (`AS build` / `COPY --from=build`) | La etapa `build` tiene Maven y el JDK. La imagen final solo tiene el JRE y `app.jar`. |
 | `pom.xml` → `dependency:go-offline` → `COPY src` | Mismo principio del [Paso 4](2-Cache-de-capas): al cambiar el código no se vuelven a descargar las dependencias. |
 | `--mount=type=cache,target=/root/.m2` | El repositorio local de Maven se conserva entre *builds* y no queda dentro de ninguna capa. |
-| `cp target/tareas-*.jar` | Nombre exacto del *jar* ejecutable: evita copiar por error el `*.jar.original` que deja `spring-boot-maven-plugin`. |
+| `cp target/tareas-*.jar` | Se copia por el nombre del artefacto (`tareas`) y no con `*.jar`, como recomienda la guía: si algún día el *build* genera otro `.jar` (por ejemplo, de fuentes), `cp` no recibe dos archivos. |
 | Versión completa de las imágenes base | `25.0.4.1_1` y no `25-jre`: el mismo Dockerfile produce siempre la misma imagen. |
 | `curl` instalado con `--no-install-recommends` | Ver el problema encontrado más abajo. |
 | `USER app` | La JVM no corre como `root`. |
 | `-XX:MaxRAMPercentage=75` | La JVM respeta el límite de memoria del contenedor. |
+
+`docker build --check` del proyecto: `Check complete, no warnings found.` ([`evidencias/07-proyecto-build-check.txt`](../blob/main/evidencias/07-proyecto-build-check.txt)).
 
 ### Problema encontrado: `unhealthy` al pasar a Java 25
 
@@ -71,10 +75,19 @@ $ docker inspect -f '{{range .State.Health.Log}}{{.Output}}{{end}}' proyecto-app
 /bin/sh: 1: curl: not found
 ```
 
-La imagen de Temurin 21 trae `curl`, pero las de **Temurin 25 ya no**: se comprobó con `25.0.1_8` y con la más reciente, `25.0.4.1_1`. La guía advierte de esto solo para las variantes `-alpine`. La solución fue:
+La imagen de Temurin 21 trae `curl`, pero las de **Temurin 25 ya no**:
+
+```text
+eclipse-temurin:21.0.12.1_1-jre-noble    /usr/bin/curl
+eclipse-temurin:25.0.1_8-jre-noble       curl: no existe
+eclipse-temurin:25.0.4.1_1-jre-noble     curl: no existe
+```
+ La guía advierte de esto solo para las variantes `-alpine`. La solución fue:
 
 1. Actualizar a `25.0.4.1_1-jre-noble` (agosto de 2026). La `25.0.1_8` tenía casi un año sin parches.
 2. Instalar `curl` con `--no-install-recommends` y borrar `/var/lib/apt/lists` en la misma capa, para no dejar el índice de paquetes dentro de la imagen.
+
+Evidencias: [`08-proyecto-java25-unhealthy.txt`](../blob/main/evidencias/08-proyecto-java25-unhealthy.txt) y [`07-temurin-curl.txt`](../blob/main/evidencias/07-temurin-curl.txt).
 
 **Lección:** el `HEALTHCHECK` depende de herramientas que no son parte de la aplicación. Al cambiar la imagen base hay que volver a verificar que el contenedor llegue a `healthy`, no solo que la aplicación responda.
 
@@ -124,9 +137,15 @@ proyecto-db-1    postgres:18.6-alpine   Up 21 seconds (healthy)   5432/tcp
 
 ![Proyecto en Compose](images/13-proyecto-compose-ps.png)
 
+*En la captura la aplicación está publicada en el puerto **8081** (`APP_PORT=8081`) porque el 8080 lo ocupaba el dashboard de Traefik mientras se tomaban las capturas del Paso 6.*
+
 - PostgreSQL **no publica puertos**: solo la aplicación lo alcanza, por el nombre `db` en la red de Compose.
 - `SPRING_DATASOURCE_*` se convierten en `spring.datasource.*` sin tocar `application.properties`.
-- Sin `.env`, Compose se detiene con `Defina POSTGRES_USER (ver .env.example)` en vez de arrancar con credenciales vacías.
+- Sin `.env`, Compose se detiene en vez de arrancar con credenciales vacías ([`evidencias/08-proyecto-sin-env.txt`](../blob/main/evidencias/08-proyecto-sin-env.txt)):
+
+  ```text
+  required variable POSTGRES_USER is missing a value: Defina POSTGRES_USER (ver .env.example)
+  ```
 
 ## La aplicación funcionando en el contenedor
 
@@ -149,7 +168,9 @@ $ curl localhost:8080/
 
 ![API de tareas en el navegador](images/14-proyecto-api.png)
 
-Las tareas 1 y 2 se crearon en una ejecución anterior, con la imagen de Java 21. Después de `docker compose down`, reconstruir con Java 25 y volver a levantar, **siguen ahí**, porque están en el volumen `datos-db`, no en el contenedor.
+*`GET /tareas` en el navegador, por el puerto 8081 (ver la nota de la captura anterior).*
+
+Las tareas 1 y 2 se crearon en una ejecución anterior, con la imagen de Java 21. Después de `docker compose down`, reconstruir con Java 25 y volver a levantar, **siguen ahí**, porque están en el volumen `datos-db`, no en el contenedor ([`08-proyecto-java21.txt`](../blob/main/evidencias/08-proyecto-java21.txt) muestra la ejecución donde se crearon).
 
 ## Verificación de la imagen final
 
@@ -171,7 +192,7 @@ app.jar
 | `maven:3.9.16-eclipse-temurin-25-noble` (solo la base de la etapa `build`, sin dependencias) | 689 MB |
 | `proyecto:dev` (imagen final: JRE + `curl` + `app.jar`) | 542 MB |
 
-Maven, el JDK, el código fuente y el `~/.m2` **no llegan a la imagen final**. Docker Desktop con *containerd* reporta los tamaños incluyendo las capas comprimidas, así que los valores absolutos son mayores que con el almacén clásico; la comparación entre las dos sigue siendo válida.
+Maven, el JDK, el código fuente y el `~/.m2` **no llegan a la imagen final**. La imagen final sigue siendo grande porque incluye Ubuntu 24.04 y el JRE completo; una base más pequeña (Alpine o *distroless*) la reduciría, a cambio de otras herramientas para el *healthcheck*.
 
 ## Integración continua
 

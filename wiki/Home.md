@@ -18,8 +18,8 @@ Construir imágenes propias con buenas prácticas, componer una aplicación de v
 2. [Caché de capas](2-Cache-de-capas): evidencia de `CACHED` y comparación de tiempos (4,2 s frente a 32,3 s).
 3. [Compose](3-Compose): web y Redis con *healthcheck* y `depends_on` con condición.
 4. [Balanceo de carga](4-Balanceo-de-carga): 5 réplicas detrás de Traefik.
-5. [Registro](5-Registro): imagen publicada en Docker Hub y ejercicios de la Parte 3.
-6. [Proyecto](6-Proyecto): Spring Boot *multi-stage* con PostgreSQL.
+5. [Registro](5-Registro): imagen publicada en Docker Hub (`majo062013/friendlyhello`), Ejercicio 1 resuelto y Ejercicio 2 pendiente.
+6. [Proyecto](6-Proyecto): Spring Boot *multi-stage* con Java 25 y PostgreSQL.
 7. [Seguridad](7-Seguridad): escaneo con Trivy y SBOM CycloneDX.
 8. [Reflexión final](8-Reflexion).
 
@@ -34,7 +34,7 @@ friendlyhello/                    Pasos 2 a 6 y Parte 3
  ├─ docker-compose.traefik.yaml   5 réplicas + redis + traefik
  ├─ docker-compose.hub.yaml       Ejercicio 1: imagen publicada propia
  └─ docker-compose.companero.yaml Ejercicio 2: imagen de un compañero
-proyecto/                         Parte 4: API REST de tareas (Spring Boot 4.1.2 + PostgreSQL 18)
+proyecto/                         Parte 4: API REST de tareas (Spring Boot 4.1.2 + Java 25 + PostgreSQL 18)
 evidencias/                       salidas de consola de cada paso
 .github/workflows/ci.yml          pruebas -> build -> Trivy -> publicación en GHCR
 ```

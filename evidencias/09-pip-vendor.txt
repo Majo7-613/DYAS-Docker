@@ -1,0 +1,9 @@
+# Librerías que pip trae empaquetadas en la imagen friendlyhello (pip/_vendor/vendor.txt)
+pip 26.2.2 from /usr/local/lib/python3.14/site-packages/pip (python 3.14)
+msgpack==1.1.2
+    urllib3==2.7.0
+setuptools==70.3.0
+
+# friendlyhello:sinpip (pip desinstalado): la aplicación sigue respondiendo
+pip: no existe
+GET /health -> OK

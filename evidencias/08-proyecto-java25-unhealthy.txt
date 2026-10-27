@@ -1,0 +1,38 @@
+# Al pasar a Java 25 con eclipse-temurin:25.0.1_8-jre-noble: la app responde pero el contenedor queda unhealthy
+
+build_exit=0 tiempo=167s
+#8 [stage-1 1/4] FROM docker.io/library/eclipse-temurin:25.0.1_8-jre-noble@sha256:ecbdcdbfae44ee61794a8ad36042b6b8e3c3124e5e9c171c3630fcd5ab856e33
+#9 [build 1/6] FROM docker.io/library/maven:3.9.16-eclipse-temurin-25-noble@sha256:93b8a14ea2f412782e4e842651273b4d903e35cc496284f178fbbe2d67d00976
+app=unhealthy
+== docker compose ps
+NAME             IMAGE                  STATUS                     PORTS
+proyecto-app-1   proyecto:dev           Up 3 minutes (unhealthy)   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+proyecto-db-1    postgres:18.6-alpine   Up 3 minutes (healthy)     5432/tcp
+
+== Versión de Java en la imagen final
+openjdk version "25.0.1" 2025-10-21 LTS
+OpenJDK Runtime Environment Temurin-25.0.1+8 (build 25.0.1+8-LTS)
+
+== GET /actuator/health/readiness
+{"status":"UP"}
+== POST /tareas
+{"titulo":"Probar con Java 25","completada":false,"id":3}
+== POST /tareas con título vacío (validación)
+HTTP 400
+== GET /tareas (las tareas de la ejecución anterior siguen en el volumen datos-db)
+[{"titulo":"Publicar la imagen en Docker Hub","completada":false,"id":2},{"titulo":"Contenerizar el proyecto","completada":true,"id":1},{"titulo":"Probar con Java 25","completada":false,"id":3}]
+== GET /
+{"aplicacion":"tareas","tareas":3,"hostname":"aba84aa6fdec"}
+
+== docker exec proyecto-app-1 id
+uid=999(app) gid=999(app) groups=999(app)
+== Herramientas de compilación en la imagen final
+mvn: no existe
+javac: no existe
+app.jar
+
+== Tamaños: etapa de compilación frente a imagen final
+proyecto:dev                            533MB
+maven:3.9.16-eclipse-temurin-25-noble   689MB
+maven:3.9.16-eclipse-temurin-21-noble   809MB
+

@@ -1,0 +1,3 @@
+# docker compose sin archivo .env (se pasa un .env vacío con --env-file)
+$ docker compose --env-file vacio.env config
+error while interpolating services.db.environment.POSTGRES_USER: required variable POSTGRES_USER is missing a value: Defina POSTGRES_USER (ver .env.example)

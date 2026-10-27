@@ -1,0 +1,7 @@
+# Tamaño comprimido en Docker Hub (linux/amd64)
+python:3.14           415.8 MB
+python:3.14-slim       43.8 MB
+
+# Tamaño local (docker images)
+REPOSITORY:TAG                          SIZE
+friendlyhello:latest                    215MB

@@ -7,7 +7,7 @@ docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
   aquasec/trivy:0.76.0 image --timeout 20m --severity HIGH,CRITICAL proyecto:dev
 ```
 
-> En Windows, el primer escaneo de `proyecto:dev` falló con `context deadline exceeded`: el límite por defecto de Trivy es 5 minutos y el análisis de las capas tardó más. Se resolvió con `--timeout 20m`.
+> Se usa `--timeout 20m` porque el límite por defecto de Trivy es de 5 minutos y el análisis de una imagen Java grande en Docker Desktop puede superarlo.
 
 ### Resultados (base de datos de Trivy del 24 de octubre de 2026)
 
@@ -22,17 +22,19 @@ proyecto:dev (ubuntu 24.04) │ ubuntu │ 0
 app/app.jar                 │  jar   │ 0
 ```
 
+Reportes completos: [`evidencias/09-trivy-proyecto.txt`](../blob/main/evidencias/09-trivy-proyecto.txt) y [`evidencias/09-trivy-friendlyhello.txt`](../blob/main/evidencias/09-trivy-friendlyhello.txt).
+
 ### Análisis
 
-**`proyecto:dev` sale limpia.** La guía reporta que un Spring Boot 4.1.1 recién generado tenía 8 hallazgos (Tomcat 11.0.24 y Jackson 3.1.5). Con **Spring Boot 4.1.2**, que trae Tomcat 11.0.27 y Jackson 3.1.7, esos hallazgos ya están corregidos. El sistema base también sale limpio porque se actualizó a la etiqueta **`25.0.4.1_1`** en lugar de la `25.0.1_8`, que tenía casi un año. Este resultado es una foto del día: mañana puede publicarse un CVE nuevo. Por eso el escaneo es un paso del pipeline y no una revisión única.
+**`proyecto:dev` sale limpia.** La guía reporta que un Spring Boot 4.1.1 recién generado tenía 8 hallazgos (Tomcat 11.0.24 y Jackson 3.1.5). Con **Spring Boot 4.1.2**, que trae Tomcat 11.0.27 y Jackson 3.1.7, esos hallazgos ya están corregidos. El sistema base (Ubuntu 24.04 con Temurin **`25.0.4.1_1`**, de agosto de 2026) también sale limpio. No se escaneó la `25.0.1_8` anterior, así que no se puede afirmar cuántos hallazgos evitó la actualización; lo que sí se sabe es que tenía casi un año sin parches. Este resultado es una foto del día: mañana puede publicarse un CVE nuevo. Por eso el escaneo es un paso del pipeline y no una revisión única.
 
-**`friendlyhello`: los 44 hallazgos de Debian no tienen corrección publicada.** 43 están en estado `affected` y 1 en `fix_deferred` (`util-linux`, `ncurses`, `systemd`, `perl-base`, `acl`…). Actualizar la imagen hoy no los elimina. Las opciones serían:
+**`friendlyhello`: los 44 hallazgos de Debian no tienen corrección publicada.** 43 están en estado `affected` y 1 en `fix_deferred` ([`evidencias/09-trivy-friendlyhello-estados.txt`](../blob/main/evidencias/09-trivy-friendlyhello-estados.txt)) (`util-linux`, `ncurses`, `systemd`, `perl-base`, `acl`…). Actualizar la imagen hoy no los elimina. Las opciones serían:
 
-- Aceptar el riesgo y documentarlo. La mayoría son paquetes de administración del sistema (`mount`, `login`, `nsenter`) que la aplicación no ejecuta y que, sin `root` (`USER app`), son difíciles de explotar.
+- Aceptar el riesgo y documentarlo. Muchos están en herramientas de administración del sistema (`mount`, `login`, `nsenter`) que la aplicación no ejecuta, y el proceso corre sin `root` (`USER app`), lo que reduce lo que un atacante podría hacer con ellas. Cada CVE habría que revisarlo uno por uno para confirmarlo.
 - Cambiar a una base más mínima (*distroless* o Alpine), que no incluye esos paquetes.
 - Revisar periódicamente con Dependabot o Renovate para tomar la corrección cuando salga.
 
-**Los 4 hallazgos de Python vienen de pip, no de la aplicación.** Están en las librerías que pip trae empaquetadas en `pip/_vendor`:
+**Los 4 hallazgos de Python vienen de pip, no de la aplicación.** Están en las librerías que pip trae empaquetadas en `pip/_vendor` ([`evidencias/09-pip-vendor.txt`](../blob/main/evidencias/09-pip-vendor.txt)):
 
 | Paquete | Versión | Corrección | Origen |
 |---------|---------|------------|--------|
@@ -76,7 +78,7 @@ El job `imagenes` de [`.github/workflows/ci.yml`](../blob/main/.github/workflows
 |----------|:---------------:|:----------:|
 | Usuario sin privilegios (`uid=999(app)`) | ✅ | ✅ |
 | Sin herramientas de compilación en la imagen final | parcial (pip; mitigación medida) | ✅ *multi-stage*: sin `mvn` ni `javac` |
-| Imagen base con versión fija | ✅ `python:3.14-slim` | ✅ `25.0.4.1_1-jre-noble` |
+| Imagen base con versión fija | parcial: versión menor `python:3.14-slim` | ✅ versión completa `25.0.4.1_1-jre-noble` |
 | Sin secretos en la imagen | ✅ | ✅ `.env` en `.dockerignore` y `.gitignore` |
 | Base de datos sin puertos publicados | ✅ Redis | ✅ PostgreSQL |
 | Escaneo de vulnerabilidades | ✅ | ✅ también en CI |
