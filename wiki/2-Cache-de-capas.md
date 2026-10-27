@@ -49,6 +49,6 @@ Docker cachea cada capa a partir de la instrucción **y** del contenido que usa.
 - **Orden correcto:** `COPY requirements.txt` solo cambia si cambia `requirements.txt`. Al tocar `app.py` se invalida a partir de `COPY . .`, y `pip install` está antes, así que se reutiliza.
 - **Orden incorrecto:** `COPY . .` incluye `app.py`, de modo que cualquier cambio en el código invalida esa capa y arrastra a `pip install`, que vuelve a descargar e instalar Flask, Redis y gunicorn.
 
-La diferencia crece con el proyecto. En el proyecto Java la misma idea (`COPY pom.xml` → `dependency:go-offline` → `COPY src`) evita descargar todas las dependencias de Maven en cada *build*, que es justamente lo que más tarda (ver [Proyecto](6-Proyecto)). En un pipeline de CI cada minuto ahorrado se multiplica por cada *push* del equipo.
+En el proyecto Java se aplicó la misma idea (`COPY pom.xml` → `dependency:go-offline` → `COPY src`): al corregir el *healthcheck*, un cambio solo en la etapa final, toda la etapa de compilación salió en `CACHED`, incluida la descarga de dependencias de Maven ([`evidencias/07-proyecto-build.txt`](../blob/main/evidencias/07-proyecto-build.txt); ver [Proyecto](6-Proyecto)). En un pipeline de CI ese ahorro se repite en cada *push* del equipo.
 
 Salidas completas: [`evidencias/04-cache-comparacion.txt`](../blob/main/evidencias/04-cache-comparacion.txt), [`04-cache-orden-correcto.txt`](../blob/main/evidencias/04-cache-orden-correcto.txt) y [`04-cache-orden-incorrecto.txt`](../blob/main/evidencias/04-cache-orden-incorrecto.txt).

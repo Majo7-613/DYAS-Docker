@@ -41,7 +41,7 @@ evidencias/                       salidas de consola de cada paso
 
 ## Entorno de pruebas
 
-- Windows 11 con Docker Desktop (Engine 28.5.1, Compose v2.40.0).
+- Windows 11 con Docker Desktop (Engine 28.5.1, Compose v2.40.0) ([`evidencias/00-entorno.txt`](../blob/main/evidencias/00-entorno.txt)).
 - En este equipo el puerto 4000 lo ocupaba otro proyecto, así que las pruebas se hicieron en el **4001**. Los archivos de Compose aceptan `WEB_PORT` (por defecto 4000), como recomienda la tabla de *Problemas frecuentes* de la guía:
 
 ```bash

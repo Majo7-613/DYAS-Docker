@@ -54,11 +54,11 @@ ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75", "-jar", "/app/app.jar"]
 
 | Decisión | Por qué |
 |----------|---------|
-| Dos etapas (`AS build` / `COPY --from=build`) | La etapa `build` tiene Maven y el JDK. La imagen final solo tiene el JRE y `app.jar`. |
+| Dos etapas (`AS build` / `COPY --from=build`) | La etapa `build` tiene Maven y el JDK. La imagen final tiene el JRE, `curl` para el *healthcheck* y `app.jar`. |
 | `pom.xml` → `dependency:go-offline` → `COPY src` | Mismo principio del [Paso 4](2-Cache-de-capas): al cambiar el código no se vuelven a descargar las dependencias. |
 | `--mount=type=cache,target=/root/.m2` | El repositorio local de Maven se conserva entre *builds* y no queda dentro de ninguna capa. |
 | `cp target/tareas-*.jar` | Se copia por el nombre del artefacto (`tareas`) y no con `*.jar`, como recomienda la guía: si algún día el *build* genera otro `.jar` (por ejemplo, de fuentes), `cp` no recibe dos archivos. |
-| Versión completa de las imágenes base | `25.0.4.1_1` y no `25-jre`: el mismo Dockerfile produce siempre la misma imagen. |
+| Versión completa de las imágenes base | `25.0.4.1_1` y no `25-jre`: la etiqueta no salta a otra versión de Java con el tiempo. Para una reproducibilidad total se podría fijar además el *digest* (`@sha256:…`), porque los mantenedores pueden volver a publicar una misma etiqueta con parches del sistema base. |
 | `curl` instalado con `--no-install-recommends` | Ver el problema encontrado más abajo. |
 | `USER app` | La JVM no corre como `root`. |
 | `-XX:MaxRAMPercentage=75` | La JVM respeta el límite de memoria del contenedor. |

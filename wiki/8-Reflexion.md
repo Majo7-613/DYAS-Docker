@@ -23,7 +23,7 @@ Porque la alta disponibilidad exige **eliminar los puntos únicos de falla**, y 
 - **Redis:** hay un solo nodo. Si cae, las 5 réplicas siguen respondiendo, pero sin contador. El estado compartido es otro punto único.
 - **Recursos compartidos:** las 5 réplicas compiten por la misma CPU, memoria y disco. Un pico de carga o una fuga de memoria en una afecta a las demás.
 
-Lo que sí dan las réplicas es **escalabilidad horizontal** y tolerancia a fallas de **un proceso**: si un *worker* se cuelga y su *healthcheck* falla, Traefik deja de enviarle tráfico. Para alta disponibilidad real hacen falta réplicas en **varios nodos**, ojalá en distintas zonas, con un orquestador (Kubernetes) que las reprograme cuando un nodo cae, un balanceador redundante y una base de datos replicada. Que el diseño sea **sin estado** (todo el estado en Redis o PostgreSQL) es lo que hace posible ese salto, y es la decisión de arquitectura que hay que tomar desde ya en el proyecto.
+Lo que sí dan las réplicas es **escalabilidad horizontal** y tolerancia a fallas de **un proceso**: si una réplica deja de responder y su *healthcheck* falla, Traefik deja de enviarle tráfico y las otras cuatro siguen atendiendo. Para alta disponibilidad real hacen falta réplicas en **varios nodos**, ojalá en distintas zonas, con un orquestador (Kubernetes) que las reprograme cuando un nodo cae, un balanceador redundante y una base de datos replicada. Que el diseño sea **sin estado** (todo el estado en Redis o PostgreSQL) es lo que hace posible ese salto, y es la decisión de arquitectura que hay que tomar desde ya en el proyecto.
 
 ## 4. ¿Qué riesgos de seguridad tiene una imagen que corre como `root` o que incluye herramientas de compilación?
 
@@ -40,7 +40,7 @@ Lo que sí dan las réplicas es **escalabilidad horizontal** y tolerancia a fall
 - **Fuga de información:** el código fuente, el `~/.m2` o archivos de configuración del *build* terminan en producción.
 - **Imágenes más grandes:** más lentas de descargar y desplegar.
 
-El Dockerfile *multi-stage* del proyecto resuelve esto: la etapa `build` tiene Maven y el JDK, y la imagen final solo tiene el JRE y el `.jar` (ver [Proyecto](6-Proyecto)).
+El Dockerfile *multi-stage* del proyecto resuelve esto: la etapa `build` tiene Maven y el JDK, y la imagen final tiene el JRE, `curl` (solo para el *healthcheck*) y el `.jar`. Se comprobó que no contiene `mvn` ni `javac` (ver [Proyecto](6-Proyecto)).
 
 ## Conexión con el proyecto
 
@@ -52,7 +52,7 @@ Lo aprendido se traduce directamente en el checklist del Proyecto 3:
 | `.dockerignore` | `proyecto/.dockerignore` (excluye `target/`, `.env`, `.git`) |
 | `docker compose up` deja el sistema funcionando | `proyecto/docker-compose.yml` (app + PostgreSQL con `service_healthy`) |
 | Configuración por variables de entorno, sin secretos | `SPRING_DATASOURCE_*` + `.env.example`, con `.env` en `.gitignore` |
-| *Healthcheck* usado por Compose y por el despliegue | `/actuator/health/readiness` |
+| *Healthcheck* usado por Compose y listo para el despliegue | `HEALTHCHECK` de la imagen con `/actuator/health/readiness`; `pg_isready` en la base de datos, que Compose usa en `depends_on` |
 | Imagen construida en CI | `.github/workflows/ci.yml`: el job `imagenes` tiene `needs: pruebas` |
 
 **Aprendizajes principales:**
@@ -61,4 +61,4 @@ Lo aprendido se traduce directamente en el checklist del Proyecto 3:
 2. **El *healthcheck* es parte del contrato** entre la aplicación y la infraestructura: Compose lo usa para el orden de arranque y Traefik para decidir a qué réplica enviar tráfico. Debe verificar **la propia aplicación** y no sus dependencias. Por eso se usa `readiness` y no `/actuator/health`.
 3. **La seguridad de una imagen es una foto del día, no una propiedad fija:** la guía reporta 8 hallazgos en Spring Boot 4.1.1, y nuestra imagen con 4.1.2 y Temurin 25.0.4.1 sale con 0. En cambio, `python:3.14-slim` tiene 44 hallazgos de Debian sin corrección publicada, y 4 más vienen de pip, una herramienta que solo se necesita al construir (ver [Seguridad](7-Seguridad)). Hay que escanear en cada *build* y tener un SBOM para reaccionar cuando aparezca un CVE nuevo.
 4. **El diseño sin estado** es lo que permite escalar. Es una decisión de arquitectura, no de infraestructura.
-5. **Cambiar la imagen base puede romper cosas invisibles:** al pasar de Java 21 a Java 25 la aplicación seguía respondiendo, pero el contenedor quedó `unhealthy` porque Temurin 25 ya no trae `curl` (ver [Proyecto](6-Proyecto#problema-encontrado-unhealthy-al-pasar-a-java-25)). Sin el *healthcheck*, un despliegue habría enviado tráfico a una réplica que la infraestructura no podía vigilar.
+5. **Cambiar la imagen base puede romper cosas invisibles:** al pasar de Java 21 a Java 25 la aplicación seguía respondiendo, pero el contenedor quedó `unhealthy` porque Temurin 25 ya no trae `curl` (ver [Proyecto](6-Proyecto#problema-encontrado-unhealthy-al-pasar-a-java-25)). La aplicación funcionaba, pero cualquier componente que confíe en el *healthcheck* (Traefik, un orquestador) la habría sacado de servicio por un fallo del propio chequeo, no de la aplicación.
