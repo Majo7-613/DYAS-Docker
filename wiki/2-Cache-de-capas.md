@@ -42,7 +42,7 @@ Todas las mediciones son después de modificar `app.py`, con la caché caliente 
 
 Con el orden incorrecto cada cambio en el código cuesta **unas 7,5 veces más**.
 
-## Por qué pasa
+## Explicación
 
 Docker cachea cada capa a partir de la instrucción **y** del contenido que usa. En `COPY` ese contenido es el *checksum* de los archivos copiados. Cuando una capa se invalida, se invalidan también **todas las que vienen después**.
 
