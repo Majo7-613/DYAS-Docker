@@ -18,7 +18,7 @@ Construir imágenes propias con buenas prácticas, componer una aplicación de v
 2. [Caché de capas](2-Cache-de-capas): evidencia de `CACHED` y comparación de tiempos (4,2 s frente a 32,3 s).
 3. [Compose](3-Compose): web y Redis con *healthcheck* y `depends_on` con condición.
 4. [Balanceo de carga](4-Balanceo-de-carga): 5 réplicas detrás de Traefik.
-5. [Registro](5-Registro): imagen publicada en Docker Hub (`majo062013/friendlyhello`), Ejercicio 1 resuelto y Ejercicio 2 pendiente.
+5. [Registro](5-Registro): imagen publicada en Docker Hub (`majo062013/friendlyhello`), y los dos ejercicios de la Parte 3 resueltos.
 6. [Proyecto](6-Proyecto): Spring Boot *multi-stage* con Java 25 y PostgreSQL.
 7. [Seguridad](7-Seguridad): escaneo con Trivy y SBOM CycloneDX.
 8. [Reflexión final](8-Reflexion).

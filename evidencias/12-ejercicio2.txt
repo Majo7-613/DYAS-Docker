@@ -1,0 +1,44 @@
+== docker images amyjean/friendlyhello (antes: no existe localmente)
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+== COMPANERO_IMAGE=amyjean/friendlyhello:0.1.0 docker compose -f docker-compose.companero.yaml up -d
+ web Pulling 
+ bd618f3000ec Download complete 
+ ef3d6bc775a5 Download complete 
+ e7c150f7feee Download complete 
+ 86d7bb0d0fc8 Download complete 
+ e7c150f7feee Pull complete 
+ 86d7bb0d0fc8 Pull complete 
+ 283afecbacc0 Download complete 
+ ef3d6bc775a5 Pull complete 
+ 283afecbacc0 Pull complete 
+ bd618f3000ec Pull complete 
+ web Pulled 
+ Network friendlyhello_default  Creating
+ Network friendlyhello_default  Created
+ Container friendlyhello-redis-1  Creating
+ Container friendlyhello-redis-1  Created
+ Container friendlyhello-web-1  Creating
+ Container friendlyhello-web-1  Created
+ Container friendlyhello-redis-1  Starting
+ Container friendlyhello-redis-1  Started
+ Container friendlyhello-redis-1  Healthy
+ Container friendlyhello-web-1  Starting
+ Container friendlyhello-web-1  Started
+
+== docker compose -f docker-compose.companero.yaml ps
+NAME                    IMAGE                         STATUS                    PORTS
+friendlyhello-redis-1   redis:8.8                     Up 10 seconds (healthy)   6379/tcp
+friendlyhello-web-1     amyjean/friendlyhello:0.1.0   Up 3 seconds (healthy)    0.0.0.0:4001->8000/tcp, [::]:4001->8000/tcp
+
+== docker exec friendlyhello-web-1 id
+uid=999(app) gid=999(app) groups=999(app)
+
+== curl http://localhost:4001
+<h3>Hello World!</h3><b>Hostname:</b> a584c7c7abc8<br/><b>Visits:</b> 71
+<h3>Hello World!</h3><b>Hostname:</b> a584c7c7abc8<br/><b>Visits:</b> 72
+<h3>Hello World!</h3><b>Hostname:</b> a584c7c7abc8<br/><b>Visits:</b> 73
+
+== Versión de Python en cada imagen
+amyjean/friendlyhello:0.1.0 -> Python 3.14.9
+friendlyhello (propia)       -> Python 3.14.10

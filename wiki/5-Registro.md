@@ -87,10 +87,44 @@ Salida completa: [`evidencias/11-ejercicio1.txt`](../blob/main/evidencias/11-eje
 
 [`friendlyhello/docker-compose.companero.yaml`](../blob/main/friendlyhello/docker-compose.companero.yaml):
 
+Se usó la imagen publicada por una compañera del curso, [`amyjean/friendlyhello`](https://hub.docker.com/r/amyjean/friendlyhello), que también tiene las etiquetas `0.1.0` y `latest`.
+
 ```bash
-COMPANERO_IMAGE=<usuario-del-compañero>/friendlyhello:0.1.0 WEB_PORT=4001 docker compose -f docker-compose.companero.yaml up -d
+COMPANERO_IMAGE=amyjean/friendlyhello:0.1.0 WEB_PORT=4001 docker compose -f docker-compose.companero.yaml up -d
 ```
 
-> **Estado: pendiente.** El archivo de Compose está listo, pero al momento de la entrega ningún compañero había compartido el nombre de su imagen. Cuando se tenga, el ejercicio se resuelve con el comando de arriba, sin cambiar ningún archivo.
+Antes de ejecutar una imagen de otra persona se revisó su configuración con `docker inspect` y `docker history`. Es la aplicación del taller: puerto 8000, usuario `app`, gunicorn y el mismo `HEALTHCHECK`.
 
-La idea del ejercicio es ver el valor de un registro: ejecutar la aplicación de otra persona **sin tener su código ni construir nada**, solo con el nombre de la imagen. Es lo mismo que hace un servidor de despliegue con la imagen que publica el pipeline.
+```text
+== docker images amyjean/friendlyhello (antes: no existe localmente)
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+ web Pulling
+ ...
+ web Pulled
+ Container friendlyhello-redis-1  Healthy
+ Container friendlyhello-web-1  Started
+
+NAME                    IMAGE                         STATUS                    PORTS
+friendlyhello-redis-1   redis:8.8                     Up 10 seconds (healthy)   6379/tcp
+friendlyhello-web-1     amyjean/friendlyhello:0.1.0   Up 3 seconds (healthy)    0.0.0.0:4001->8000/tcp
+
+$ docker exec friendlyhello-web-1 id
+uid=999(app) gid=999(app) groups=999(app)
+
+Hello World!  Hostname: a584c7c7abc8  Visits: 71
+Hello World!  Hostname: a584c7c7abc8  Visits: 72
+```
+
+![Ejercicio 2: la aplicación con la imagen de la compañera](images/12-ejercicio2.png)
+
+Dos detalles muestran que se está ejecutando **su** imagen y no la propia:
+
+- Dice **"Hello"**, mientras que la imagen propia dice "Hola" por el cambio del Paso 4. El código viene dentro de su imagen.
+- Esta vez Docker sí **descargó** capas (`Pull complete`), porque su imagen se construyó sobre otra versión de `python:3.14-slim`: la suya trae Python 3.14.9 y la propia 3.14.10. Es la etiqueta de versión menor de la que se habla en [Imágenes](1-Imagenes) moviéndose con los parches.
+
+El contador sigue en 71 porque, aunque la imagen es otra, el Redis y el volumen `./data` son los propios. La aplicación de la compañera usa los datos locales sin saber nada de ellos: **la imagen trae el código, pero los datos los pone el entorno donde se ejecuta**.
+
+Este es el valor de un registro: se ejecutó la aplicación de otra persona **sin tener su código ni construir nada**, solo con el nombre de la imagen. Es lo mismo que hace un servidor de despliegue con la imagen que publica el pipeline.
+
+Salida completa: [`evidencias/12-ejercicio2.txt`](../blob/main/evidencias/12-ejercicio2.txt).
