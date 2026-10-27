@@ -44,6 +44,19 @@ Las **5 réplicas** atienden exactamente 4 peticiones cada una: Traefik reparte 
 ![Hostname 1](images/06-hostname-1.png)
 ![Hostname 2](images/07-hostname-2.png)
 ![Hostname 3](images/08-hostname-3.png)
+![Hostname 4](images/08b-hostname-4.png)
+
+Las capturas muestran **4 de las 5 réplicas** (`905a93e181bf`, `a08e6258048c`, `7a10dd952059`, `d61fe36ef3b5`), que coinciden con la columna `CONTAINER ID` de `docker ps`:
+
+```text
+a08e6258048c friendlyhello-web-2
+a467d71d7f9c friendlyhello-web-1
+d61fe36ef3b5 friendlyhello-web-4
+905a93e181bf friendlyhello-web-5
+7a10dd952059 friendlyhello-web-3
+```
+
+El navegador integrado de VS Code mostraba solo 2 hostnames alternados porque reutiliza conexiones HTTP (*keep-alive*); desde Chrome y con `curl`, que abren conexiones nuevas, el reparto entre las 5 réplicas es completo.
 
 ## Dashboard de Traefik
 
