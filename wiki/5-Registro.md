@@ -2,13 +2,20 @@
 
 ## Docker Hub
 
-**Imagen publicada:** https://hub.docker.com/r/DOCKERHUB_USER/friendlyhello
+**Imagen publicada:** https://hub.docker.com/r/majo062013/friendlyhello
 
 ```bash
 docker login
-docker build -t DOCKERHUB_USER/friendlyhello:0.1.0 -t DOCKERHUB_USER/friendlyhello:latest friendlyhello
-docker push DOCKERHUB_USER/friendlyhello:0.1.0
-docker push DOCKERHUB_USER/friendlyhello:latest
+docker build -t majo062013/friendlyhello:0.1.0 -t majo062013/friendlyhello:latest friendlyhello
+docker push majo062013/friendlyhello:0.1.0
+docker push majo062013/friendlyhello:latest
+```
+
+Las dos etiquetas quedaron publicadas con el mismo *digest*:
+
+```text
+Docker Hub: latest  sha256:4a6d8d5ea5d4…
+Docker Hub: 0.1.0   sha256:4a6d8d5ea5d4…
 ```
 
 ![Repositorio en Docker Hub con las etiquetas 0.1.0 y latest](images/10-dockerhub.png)
@@ -42,11 +49,34 @@ services:
 ```
 
 ```bash
-docker rmi DOCKERHUB_USER/friendlyhello:0.1.0      # forzar la descarga desde Docker Hub
-DOCKERHUB_USER=DOCKERHUB_USER WEB_PORT=4001 docker compose -f docker-compose.hub.yaml up -d
+docker rmi majo062013/friendlyhello:0.1.0 majo062013/friendlyhello:latest   # forzar la descarga desde Docker Hub
+DOCKERHUB_USER=majo062013 WEB_PORT=4001 docker compose -f docker-compose.hub.yaml up -d
 ```
 
+```text
+== docker images majo062013/friendlyhello (antes: no existe localmente)
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+ web Pulling
+ c3d376f707e4 Already exists
+ ...
+ web Pulled
+ Container friendlyhello-redis-1  Healthy
+ Container friendlyhello-web-1  Started
+
+NAME                    IMAGE                            STATUS                    PORTS
+friendlyhello-redis-1   redis:8.8                        Up 19 seconds (healthy)   6379/tcp
+friendlyhello-web-1     majo062013/friendlyhello:0.1.0   Up 12 seconds (healthy)   0.0.0.0:4001->8000/tcp
+
+Hola World!  Hostname: 271bde3ad9d1  Visits: 28
+Hola World!  Hostname: 271bde3ad9d1  Visits: 29
+```
+
+Compose descargó la imagen desde Docker Hub (`web Pulled`). Las capas aparecen como `Already exists` porque son las mismas de `python:3.14-slim`, que ya estaba en el equipo: Docker descarga **solo las capas que no tiene**, la misma idea de la caché del Paso 4. El contador siguió en 28 porque el volumen `./data` es el mismo de los pasos anteriores.
+
 ![Ejercicio 1: pull desde Docker Hub](images/11-ejercicio1.png)
+
+Salida completa: [`evidencias/11-ejercicio1.txt`](../blob/main/evidencias/11-ejercicio1.txt).
 
 ## Ejercicio 2: usar la imagen de un compañero
 

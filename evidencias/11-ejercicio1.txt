@@ -1,0 +1,42 @@
+== docker images majo062013/friendlyhello (antes: no existe localmente)
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+== DOCKERHUB_USER=majo062013 docker compose -f docker-compose.hub.yaml up -d
+ web Pulling 
+ c3d376f707e4 Pulling fs layer 
+ 3b37c4fb6789 Pulling fs layer 
+ bd637403864b Pulling fs layer 
+ a6f3429ed427 Pulling fs layer 
+ 08eaf939b850 Pulling fs layer 
+ c3d376f707e4 Already exists 
+ 3b37c4fb6789 Already exists 
+ bd637403864b Already exists 
+ a6f3429ed427 Already exists 
+ 08eaf939b850 Already exists 
+ bd637403864b Pull complete 
+ 3b37c4fb6789 Pull complete 
+ a6f3429ed427 Pull complete 
+ c3d376f707e4 Pull complete 
+ 08eaf939b850 Pull complete 
+ web Pulled 
+ Network friendlyhello_default  Creating
+ Network friendlyhello_default  Created
+ Container friendlyhello-redis-1  Creating
+ Container friendlyhello-redis-1  Created
+ Container friendlyhello-web-1  Creating
+ Container friendlyhello-web-1  Created
+ Container friendlyhello-redis-1  Starting
+ Container friendlyhello-redis-1  Started
+ Container friendlyhello-redis-1  Healthy
+ Container friendlyhello-web-1  Starting
+ Container friendlyhello-web-1  Started
+
+== docker compose -f docker-compose.hub.yaml ps
+NAME                    IMAGE                            STATUS                    PORTS
+friendlyhello-redis-1   redis:8.8                        Up 19 seconds (healthy)   6379/tcp
+friendlyhello-web-1     majo062013/friendlyhello:0.1.0   Up 12 seconds (healthy)   0.0.0.0:4001->8000/tcp, [::]:4001->8000/tcp
+
+== curl http://localhost:4001
+<h3>Hola World!</h3><b>Hostname:</b> 271bde3ad9d1<br/><b>Visits:</b> 28
+<h3>Hola World!</h3><b>Hostname:</b> 271bde3ad9d1<br/><b>Visits:</b> 29
+<h3>Hola World!</h3><b>Hostname:</b> 271bde3ad9d1<br/><b>Visits:</b> 30
