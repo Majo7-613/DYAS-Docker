@@ -94,8 +94,3 @@ Para detener cualquiera de ellos: `docker compose down` (con el mismo `-f` si se
 | [Seguridad](https://github.com/Majo7-613/DYAS-Docker/wiki/7-Seguridad) | Trivy, mitigaciones medidas y SBOM |
 | [Reflexión final](https://github.com/Majo7-613/DYAS-Docker/wiki/8-Reflexion) | Análisis y aprendizajes |
 
-## Créditos
-
-Este trabajo desarrolla el [Taller de Docker](https://github.com/CesarAVegaF312/DYAS-Docker) del profesor **César Augusto Vega Fernández** (Universidad de La Sabana), cuyas Partes 1 a 3 se basan en el [Taller de Docker](https://aulasoftwarelibre.github.io/taller-de-docker/) de **Aula de Software Libre** (Universidad de Córdoba). El enunciado original se puede consultar en el historial de este repositorio o en el repositorio del profesor.
-
-Se distribuye, como el material original, bajo la licencia [Creative Commons Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es).
